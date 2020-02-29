@@ -68,7 +68,7 @@ function getPopupHTML(data) {
 
 function bindPopupEvents(popupEl) {
   let closeButton = popupEl.querySelector('.close');
-  let spinButton = popupEl.querySelector('.spin');
+  let spinButton = popupEl.querySelector('#spin');
 
   closeButton.addEventListener('click', (event) => {
     event.preventDefault();
@@ -77,6 +77,6 @@ function bindPopupEvents(popupEl) {
 }
 
 let currentRotation = 0;
-let spinButton = document.querySelector('.spin');
+let spinButton = document.querySelector('#spin');
 spinButton.addEventListener('click', launchSpin);
 
