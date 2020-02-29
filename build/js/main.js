@@ -17,6 +17,19 @@ function getCurrentColor(currentDegrees) {
   return colors[segmentShift];
 }
 
+function getCurrentSegmentNumber(currentColor) {
+  let colorSegmentNumbers = {
+    red: 1,
+    green: 2,
+    blue: 3,
+    yellow: 4,
+    cyan: 5,
+    orange: 6
+  }
+
+  return colorSegmentNumbers[ currentColor ];
+}
+
 function launchSpin() {
   currentRotation += randomDegrees();
   
@@ -30,6 +43,7 @@ function launchSpin() {
 function showPopup(color) {
   let popHTML = getPopupHTML({
     color: color,
+    segmentNumber: getCurrentSegmentNumber(color),
     title: 'Поздравляем!'
   });
 
@@ -53,9 +67,9 @@ function getPopupHTML(data) {
                 </div>
 
                 <div class='popup__description'>
-                  Вы выиграли сегмент с цветом <span>${data.color}</span>.
+                  Ваш приз &mdash; <span>${data.segmentNumber}</span> бутылок рома!
                   <br />
-                  Испробуйте Удачу в следующем сегменте!
+                  Йохохо!
                 </div>
               </div>
               <button class="closest" data-close>
@@ -68,10 +82,16 @@ function getPopupHTML(data) {
 
 function bindPopupEvents(popupEl) {
   let closeButton = popupEl.querySelector('.close');
-  let spinButton = popupEl.querySelector('.spin');
+  let spinButton = popupEl.querySelector('.closest');
 
   closeButton.addEventListener('click', (event) => {
     event.preventDefault();
+    popupEl.remove();
+  });
+
+  spinButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    launchSpin();
     popupEl.remove();
   });
 }
