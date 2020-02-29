@@ -116,7 +116,7 @@ body {
   z-index: 2;
 }
 .spin {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .rotating {
   -webkit-transition: all 3s;
